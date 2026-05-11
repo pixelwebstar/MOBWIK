@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CustomSelect from "@/components/CustomSelect";
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare, Briefcase, ShieldCheck } from "lucide-react";
 
-export default function ContactPage() {
+function ContactContent() {
   const searchParams = useSearchParams();
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -117,5 +116,13 @@ export default function ContactPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactContent />
+    </Suspense>
   );
 }
