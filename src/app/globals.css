@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-outfit);
+
+  --color-primary: #0EA5E9;
+  /* Matte Sky Blue */
+  --color-secondary: #0F172A;
+  /* Deep Slate */
+  --color-accent: #64748B;
+  /* Muted Slate */
+  --color-surface-1: #FFFFFF;
+  /* Pure White */
+  --color-surface-2: #F8FAFC;
+  /* Matte Tinted White */
+  --color-border: #E2E8F0;
+
+  --breakpoint-xs: 375px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FFFFFF;
+  --foreground: #0F172A;
+  --primary: #0EA5E9;
+  --secondary: #0F172A;
+  --accent: #64748B;
+  --border: #E2E8F0;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Strict & Matte */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 2px solid var(--color-surface-2);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-surface-2);
+}
+
+
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight text-secondary;
+  }
+}
+
+.matte-card {
+  @apply bg-white border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-md font-bold hover:bg-primary/90 transition-all text-center;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-4 border-2 border-secondary text-secondary rounded-md font-bold hover:bg-secondary hover:text-white transition-all text-center;
 }

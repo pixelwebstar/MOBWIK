@@ -1,0 +1,86 @@
+import { Smartphone, Battery, Droplets, Zap, Camera, Shield, Usb } from "lucide-react";
+
+const services = [
+  {
+    title: "Screen Repair",
+    description: "We fix cracked screens and touch problems quickly using high-quality parts for all iPhone and Android models. Get your screen looking new today.",
+    icon: <Smartphone className="w-10 h-10" />,
+  },
+  {
+    title: "Battery Service",
+    description: "Is your phone dying too fast? We replace old batteries with new ones to give your phone a full day of life again. Fast and reliable battery service.",
+    icon: <Battery className="w-10 h-10" />,
+  },
+  {
+    title: "Water Damage",
+    description: "Dropped your phone in water? Don't turn it on! Bring it to us for a professional deep clean to save your device from any permanent internal damage.",
+    icon: <Droplets className="w-10 h-10" />,
+  },
+  {
+    title: "Charging Port",
+    description: "Phone not charging or cable feels loose? We can repair or replace your charging port so you can get back to full power without any more issues.",
+    icon: <Usb className="w-10 h-10" />,
+  },
+  {
+    title: "Camera Repair",
+    description: "Blurry photos or a broken lens? We repair front and back cameras so you can start taking clear, sharp pictures and videos again with your smartphone.",
+    icon: <Camera className="w-10 h-10" />,
+  },
+  {
+    title: "Data Recovery",
+    description: "Lost your photos or important files? Even if your phone is broken, we can help you get your precious data back safely and securely for peace of mind.",
+    icon: <Shield className="w-10 h-10" />,
+  },
+];
+
+
+
+
+
+const Services = () => {
+  return (
+    <section id="services" className="py-24 bg-surface-2 border-b border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+          <div className="space-y-4">
+            <p className="text-4xl lg:text-6xl font-black text-secondary leading-none">REPAIR <br />SOLUTIONS</p>
+          </div>
+          <p className="text-slate-500 max-w-md text-lg font-medium leading-relaxed">
+            Standardized repair workflows and premium components ensure the highest level of reliability for every device we handle.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border overflow-hidden">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`p-12 transition-colors group relative border-border flex flex-col items-center text-center
+                ${index % 2 === 0 ? "bg-white" : "bg-surface-2"} 
+                hover:bg-primary/5 transition-all duration-300`}
+            >
+              <div className="text-primary mb-8 transition-transform group-hover:scale-110">
+                {service.icon}
+              </div>
+
+              
+              <h3 className="text-2xl font-black mb-4 text-secondary uppercase tracking-tight">{service.title}</h3>
+              <p className="text-slate-500 leading-relaxed font-medium mb-10 min-h-[5rem]">{service.description}</p>
+              
+              <a 
+                href="/contact?scroll=form"
+                className="inline-flex items-center justify-center w-full py-4 border-2 border-primary text-primary font-black uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
+              >
+                Book Repair
+              </a>
+            </div>
+          ))}
+        </div>
+
+
+      </div>
+    </section>
+  );
+};
+
+export default Services;
