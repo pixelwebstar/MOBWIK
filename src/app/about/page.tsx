@@ -13,7 +13,7 @@ export default function AboutPage() {
       <main className="flex-grow">
         <PageHero
           title="ABOUT"
-          highlight="MOBILE WIK."
+          highlight="MOB WIK."
           subtitle="A leading provider of high-precision repair services. Founded on technical excellence and customer transparency."
         />
         {/* Section 1: Overview */}

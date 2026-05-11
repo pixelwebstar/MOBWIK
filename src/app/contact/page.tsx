@@ -54,15 +54,15 @@ function ContactContent() {
                     { label: "Phone", value: "+1.234.567.890", link: "tel:+1234567890" },
                     { label: "WhatsApp", value: "+1.234.567.890", link: "https://wa.me/1234567890" },
                     { label: "Email", value: "REPAIR@MOBILEWIK.COM", link: "mailto:repair@mobilewik.com" },
-                    { label: "G-Business", value: "MOBILE WIK OFFICIAL", link: "#" },
+                    { label: "G-Business", value: "MOB WIK OFFICIAL", link: "#" },
                     { label: "Address", value: "11910 76TH STREET", link: "https://maps.google.com/?q=11910+76th+Street" },
                     { label: "Schedule", value: "09:00 - 18:00", link: "#" },
                     { label: "Careers", value: "JOIN THE TEAM", link: "/about" },
                     { label: "Privacy", value: "PROTOCOLS", link: "/about" },
                     { label: "Instagram", value: "@MOBILEWIK", link: "#" },
-                    { label: "Facebook", value: "MOBILE WIK REPAIR", link: "#" },
-                    { label: "X (Twitter)", value: "@MOBILEWIK", link: "#" },
-                    { label: "LinkedIn", value: "MOBILE WIK DATA", link: "#" },
+                    { label: "Facebook", value: "MOB WIK REPAIR", link: "#" },
+                    { label: "X (Twitter)", value: "@MOBWIK", link: "#" },
+                    { label: "LinkedIn", value: "MOB WIK DATA", link: "#" },
                   ].map((item, i) => (
                     <a
                       key={i}

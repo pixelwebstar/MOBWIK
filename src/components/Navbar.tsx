@@ -48,12 +48,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="p-1.5 bg-primary rounded-md shadow-sm">
-              <Smartphone className="w-6 h-6 text-white" />
-            </div>
+          <Link href="/" className="flex items-center">
             <span className="text-xl font-bold tracking-tighter text-secondary uppercase">
-              Mobile <span className="text-primary font-black">Wik</span>
+              Mob <span className="text-primary font-black">Wik</span>
             </span>
           </Link>
 

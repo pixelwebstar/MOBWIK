@@ -9,14 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Branding */}
           <div className="space-y-8">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary flex items-center justify-center rounded">
-                <Smartphone className="text-white w-6 h-6" />
-              </div>
-              <span className="text-2xl font-black text-secondary tracking-tighter">MOBILE<span className="text-primary">WIK</span></span>
+            <div className="flex items-center">
+              <span className="text-2xl font-black text-secondary tracking-tighter uppercase">MOB<span className="text-primary">WIK</span></span>
             </div>
             <p className="text-slate-500 font-medium leading-relaxed text-sm">
-              Mobile Wik is dedicated to providing high-quality, reliable repair services for all your essential devices. We prioritize precision, transparency, and customer satisfaction in every repair we perform.
+              Mob Wik is dedicated to providing high-quality, reliable repair services for all your essential devices. We prioritize precision, transparency, and customer satisfaction in every repair we perform.
             </p>
             <div className="flex space-x-4">
               <a href="tel:+1234567890" title="Call Us" className="w-10 h-10 border border-border flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all rounded">
@@ -93,7 +90,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-border flex flex-col md:flex-row justify-center items-center text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 gap-6">
-          <p>© 2026 MOBILE WIK. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 MOB WIK. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
 

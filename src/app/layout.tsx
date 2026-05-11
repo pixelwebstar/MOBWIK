@@ -8,11 +8,11 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Premium Mobile & Tablet Repair | Mobile Wik",
+  title: "Premium Mobile & Tablet Repair | Mob Wik",
   description: "Expert repair services for all mobile phones and tablets. Screen replacement, battery repair, and water damage recovery with premium quality and warranty.",
   keywords: ["mobile repair", "phone repair", "tablet repair", "screen replacement", "battery replacement", "iPhone repair", "Samsung repair"],
   openGraph: {
-    title: "Premium Mobile & Tablet Repair | Mobile Wik",
+    title: "Premium Mobile & Tablet Repair | Mob Wik",
     description: "Fast, professional repairs for all your devices. Same-day service available.",
     type: "website",
   }
@@ -38,5 +38,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
