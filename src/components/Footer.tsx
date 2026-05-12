@@ -70,20 +70,22 @@ const Footer = () => {
             <ul className="flex flex-col gap-4">
               {[
                 { label: "HOURS", value: "MON-SAT 09:00 - 18:00" },
-                { label: "LOC", value: "11910 76TH STREET", href: "https://maps.google.com/?q=11910+76th+Street" },
-                { label: "TEL", value: "+1.234.567.890", href: "tel:+1234567890" },
-                { label: "CHAT", value: "+1.234.567.890", href: "https://wa.me/1234567890" },
+                { label: "ADDRESS", value: "11910 76TH STREET", href: "https://maps.google.com/?q=11910+76th+Street" },
+                { label: "PHONE", value: "+1.234.567.890", href: "tel:+1234567890" },
+                { label: "WHATS APP", value: "+1.234.567.890", href: "https://wa.me/1234567890", labelColor: "text-[#25D366] lg:text-[#25D366]" },
                 { label: "MAIL", value: "REPAIR@MOBILEWIK.COM", href: "mailto:repair@mobilewik.com" },
                 { label: "TEAM", value: "ONLINE 24/7", href: "/contact?scroll=form" }
               ].map((item) => (
-                <li key={item.label} className="flex items-center text-xs font-black uppercase tracking-wider group">
-                  <span className="text-slate-400 w-16 shrink-0 text-[10px] tracking-widest">{item.label}</span>
+                <li key={item.label} className="flex flex-col items-center justify-center p-6 bg-white border border-border rounded-md space-y-3 lg:flex-row lg:items-center lg:justify-start lg:p-0 lg:bg-transparent lg:border-none lg:space-y-0 lg:text-xs font-black uppercase tracking-wider group">
+                  <span className={`${item.labelColor || 'text-primary lg:text-slate-400'} text-[13px] font-black uppercase tracking-[0.2em] lg:w-28 lg:shrink-0 lg:text-[10px] lg:tracking-widest`}>
+                    {item.label}
+                  </span>
                   {item.href ? (
-                    <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-secondary hover:text-primary transition-colors select-all">
+                    <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-secondary text-[13px] lg:text-xs hover:text-primary transition-colors select-all">
                       {item.value}
                     </a>
                   ) : (
-                    <span className="text-secondary">{item.value}</span>
+                    <span className="text-secondary text-[13px] lg:text-xs">{item.value}</span>
                   )}
                 </li>
               ))}
