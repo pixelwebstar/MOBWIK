@@ -6,16 +6,16 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-surface-2 border-t border-border pt-12 lg:pt-24 pb-6 lg:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-16 mb-8 lg:mb-20">
-          {/* Branding */}
-          <div className="hidden lg:block lg:col-span-1 space-y-8">
-            <div className="flex items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 mb-12 lg:mb-20">
+          {/* Branding - Spans full width on mobile/tablet, 1 col on desktop */}
+          <div className="col-span-2 lg:col-span-1 space-y-8 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start">
               <span className="text-2xl font-black text-secondary tracking-tighter uppercase">MOB<span className="text-primary">WIK</span></span>
             </div>
-            <p className="text-slate-500 font-medium leading-relaxed text-sm">
-              Mobwik is dedicated to providing high-quality, reliable repair services for all your essential devices. We prioritize precision, transparency, and customer satisfaction in every repair we perform.
+            <p className="text-slate-500 font-medium leading-relaxed text-sm max-w-md mx-auto lg:mx-0">
+              Mobwik is dedicated to providing high-quality, reliable repair services for all your essential devices. We prioritize precision, transparency, and customer satisfaction.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex justify-center lg:justify-start space-x-4">
               <a href="tel:+1234567890" title="Call Us" className="w-10 h-10 border border-border flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all rounded">
                 <Phone className="w-4 h-4" />
               </a>
@@ -37,72 +37,56 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Pages */}
-          <div className="hidden lg:block col-span-1 space-y-8">
-            <h4 className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">PAGES</h4>
-            <ul className="flex flex-col gap-6">
-              {["Home", "About", "Services", "Reviews", "Contact", "Careers"].map((item) => (
-                <li key={item}>
-                  <Link href={item === "Home" ? "/" : item === "Contact" ? "/contact?scroll=form" : `/${item.toLowerCase()}`} className="text-xs font-black text-secondary hover:text-primary transition-colors uppercase tracking-wider block">{item}</Link>
-                </li>
-              ))}
-            </ul>
+          {/* Pages & Services Container - Spans 2 cols on mobile/tablet */}
+          <div className="col-span-2 lg:col-span-2 grid grid-cols-2 gap-8">
+            {/* Pages */}
+            <div className="space-y-8">
+              <h4 className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">PAGES</h4>
+              <ul className="flex flex-col gap-6">
+                {["Home", "About", "Services", "Reviews", "Contact", "Careers"].map((item) => (
+                  <li key={item}>
+                    <Link href={item === "Home" ? "/" : item === "Contact" ? "/contact?scroll=form" : `/${item.toLowerCase()}`} className="text-xs font-black text-secondary hover:text-primary transition-colors uppercase tracking-wider block">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div className="space-y-8">
+              <h4 className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">SERVICES</h4>
+              <ul className="flex flex-col gap-6">
+                {["Screen Repair", "Battery Repair", "Water Damage", "Fix My Phone", "Camera Repair", "Back Glass"].map((item) => (
+                  <li key={item}>
+                    <Link href="/services" className="text-xs font-black text-secondary hover:text-primary transition-colors uppercase tracking-wider block">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Services */}
-          <div className="hidden lg:block col-span-1 space-y-8">
-            <h4 className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">SERVICES</h4>
-            <ul className="flex flex-col gap-6">
-              {["Screen Repair", "Battery Repair", "Water Damage", "Fix My Phone", "Camera Repair", "Back Glass"].map((item) => (
-                <li key={item}>
-                  <Link href="/services" className="text-xs font-black text-secondary hover:text-primary transition-colors uppercase tracking-wider block">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Business Info */}
-          <div className="col-span-1 space-y-8">
+          {/* Business Info - Spans full width on mobile/tablet, 1 col on desktop */}
+          <div className="col-span-2 lg:col-span-1 space-y-8">
             <h4 className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase text-center lg:text-left">BUSINESS INFO</h4>
-            <ul className="flex flex-col gap-4 lg:gap-6">
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-primary lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">HOURS</span>
-                </span>
-                <span className="text-xs font-black text-secondary uppercase tracking-wider">MON-SAT 09:00 - 18:00</span>
-              </li>
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-primary lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">LOC</span>
-                </span>
-                <a href="https://maps.google.com/?q=11910+76th+Street" target="_blank" rel="noopener noreferrer" className="text-xs font-black text-secondary uppercase tracking-wider hover:text-primary transition-colors select-all">
-                  11910 76TH STREET
-                </a>
-              </li>
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-primary lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">TEL</span>
-                </span>
-                <a href="tel:+1234567890" className="text-xs font-black text-secondary uppercase tracking-wider hover:text-primary transition-colors select-all">+1.234.567.890</a>
-              </li>
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-[#25D366] lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">CHAT</span>
-                </span>
-                <a href="https://wa.me/1234567890" className="text-xs font-black text-secondary uppercase tracking-wider hover:text-primary transition-colors select-all">+1.234.567.890</a>
-              </li>
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-primary lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">MAIL</span>
-                </span>
-                <a href="mailto:repair@mobilewik.com" className="text-xs font-black text-secondary uppercase tracking-wider hover:text-primary transition-colors select-all">REPAIR@MOBILEWIK.COM</a>
-              </li>
-              <li className="p-4 lg:p-0 bg-white lg:bg-transparent border lg:border-none border-border rounded flex flex-col lg:flex-row lg:items-center items-center text-center lg:text-left gap-3 lg:gap-0 transition-colors hover:border-primary">
-                <span className="text-primary lg:text-slate-400 lg:w-16 flex justify-center lg:justify-start">
-                  <span className="font-black text-[12px]">TEAM</span>
-                </span>
-                <a href="/contact?scroll=form" className="text-xs font-black text-secondary uppercase tracking-wider hover:text-primary transition-colors">ONLINE 24/7</a>
-              </li>
+            <ul className="flex flex-col gap-4">
+              {[
+                { label: "HOURS", value: "MON-SAT 09:00 - 18:00" },
+                { label: "LOC", value: "11910 76TH STREET", href: "https://maps.google.com/?q=11910+76th+Street" },
+                { label: "TEL", value: "+1.234.567.890", href: "tel:+1234567890" },
+                { label: "CHAT", value: "+1.234.567.890", href: "https://wa.me/1234567890" },
+                { label: "MAIL", value: "REPAIR@MOBILEWIK.COM", href: "mailto:repair@mobilewik.com" },
+                { label: "TEAM", value: "ONLINE 24/7", href: "/contact?scroll=form" }
+              ].map((item) => (
+                <li key={item.label} className="flex items-center text-xs font-black uppercase tracking-wider group">
+                  <span className="text-slate-400 w-16 shrink-0 text-[10px] tracking-widest">{item.label}</span>
+                  {item.href ? (
+                    <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-secondary hover:text-primary transition-colors select-all">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className="text-secondary">{item.value}</span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
