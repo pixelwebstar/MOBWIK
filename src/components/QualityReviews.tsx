@@ -81,12 +81,12 @@ const QualityReviews = ({ background = "white" }: QualityReviewsProps) => {
             <div 
               key={i} 
               onClick={() => setFlippedIndex(flippedIndex === i ? null : i)}
-              className={`flip-card ${flippedIndex === i ? "flipped" : ""}`}
+              className={`flip-card ${flippedIndex === i ? "flipped" : ""} h-full flex flex-col`}
             >
-              <div className="flip-card-inner">
+              <div className="flip-card-inner h-full flex flex-col flex-1">
                 {/* Front */}
-                <div className={`flip-card-front p-12 space-y-8 transition-all duration-300
-                  ${i % 2 === 0 ? "bg-white" : "bg-surface-2"} hover:bg-primary/5`}>
+                <div className={`flip-card-front p-12 space-y-8 transition-all duration-300 h-full w-full flex-1
+                  ${i % 2 === 0 ? "bg-white" : "bg-surface-2"} hover:bg-primary/5 flex flex-col justify-between shadow-sm`}>
                   <div className="flex justify-between items-start">
                     <div className="flex text-primary space-x-1">
                       {[...Array(5)].map((_, i) => (

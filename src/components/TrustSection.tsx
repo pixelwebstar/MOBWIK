@@ -63,11 +63,11 @@ const TrustSection = ({ background = "surface-2" }: TrustSectionProps) => {
             <div 
               key={i} 
               onClick={() => setFlippedIndex(flippedIndex === i ? null : i)}
-              className={`flip-card ${flippedIndex === i ? "flipped" : ""}`}
+              className={`flip-card ${flippedIndex === i ? "flipped" : ""} h-full flex flex-col`}
             >
-              <div className="flip-card-inner">
+              <div className="flip-card-inner h-full flex flex-col flex-1">
                 {/* Front */}
-                <div className="flip-card-front p-10 border border-border bg-white hover:border-primary transition-all group flex flex-col justify-between shadow-sm">
+                <div className="flip-card-front h-full w-full flex-1 p-10 border border-border bg-white hover:border-primary transition-all group flex flex-col justify-between shadow-sm">
                   <div>
                     <div className="flex text-primary mb-6 space-x-1">
                       {[...Array(review.rating)].map((_, i) => (

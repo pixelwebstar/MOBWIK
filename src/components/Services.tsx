@@ -66,11 +66,11 @@ const Services = () => {
             <div
               key={index}
               onClick={() => setFlippedIndex(flippedIndex === index ? null : index)}
-              className={`flip-card ${flippedIndex === index ? "flipped" : ""}`}
+              className={`flip-card ${flippedIndex === index ? "flipped" : ""} h-full flex flex-col`}
             >
-              <div className="flip-card-inner">
+              <div className="flip-card-inner h-full flex flex-col flex-1">
                 {/* Front */}
-                <div className={`flip-card-front p-12 transition-colors group relative border-border flex flex-col items-center text-center
+                <div className={`flip-card-front p-12 transition-colors group relative border-border flex flex-col items-center text-center h-full w-full flex-1
                   ${index % 2 === 0 ? "bg-white" : "bg-surface-2"}`}>
                   <div className="text-primary mb-8 transition-transform group-hover:scale-110">
                     {service.icon}
