@@ -96,7 +96,7 @@ const QualityReviews = ({ background = "white" }: QualityReviewsProps) => {
                     <span className="text-[9px] font-black text-primary tracking-widest uppercase">{review.date}</span>
                   </div>
                   <div className="relative">
-                    <p className="text-lg font-medium text-slate-600 leading-relaxed min-h-[6rem]">"{review.text}"</p>
+                    <p className="text-lg font-medium text-slate-600 leading-relaxed min-h-[6rem]">&quot;{review.text}&quot;</p>
                   </div>
                   <div className="pt-8 border-t border-border">
                     <div className="font-black text-secondary uppercase tracking-widest text-xs mb-1">{review.name}</div>

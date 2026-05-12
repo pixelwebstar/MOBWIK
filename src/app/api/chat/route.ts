@@ -7,8 +7,8 @@ export const maxDuration = 30;
 // Convert UIMessage format (parts) to ModelMessage format (content) for streamText
 function convertMessages(uiMessages: UIMessage[]) {
   return uiMessages.map((msg) => {
-    const textPart = msg.parts?.find((p: any) => p.type === "text") as any;
-    const content = textPart?.text || (msg as any).content || "";
+    const textPart = msg.parts?.find((p: { type: string }) => p.type === "text") as { text?: string } | undefined;
+    const content = textPart?.text || (msg as { content?: string }).content || "";
     return {
       role: msg.role as "user" | "assistant" | "system",
       content,
@@ -50,6 +50,7 @@ export async function POST(req: Request) {
           execute: async ({ sectionId }: { sectionId: string }) => {
             return { scrolled: true, sectionId };
           },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any),
         bookRepair: tool({
           description: "Go to the repair booking form",
@@ -57,6 +58,7 @@ export async function POST(req: Request) {
           execute: async () => {
             return { navigate: "/contact?scroll=form" };
           },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any),
         requestCallback: tool({
           description: "Submit a callback request with the customer's name and phone number. Use this only after collecting both pieces of information from the user.",
@@ -77,14 +79,17 @@ export async function POST(req: Request) {
               return { success: true, name, phone, message: "Callback request logged" };
             }
           },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any),
       },
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (result as any).toDataStreamResponse();
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Chat API Error:", error);
-    return new Response(JSON.stringify({ error: error.message || "Internal Server Error" }), {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return new Response(JSON.stringify({ error: (error as any).message || "Internal Server Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

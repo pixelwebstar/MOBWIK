@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Smartphone, Battery, Droplets, Zap, Camera, Shield, Usb, CheckCircle2 } from "lucide-react";
+import { Smartphone, Battery, Droplets, Camera, Shield, Usb, CheckCircle2 } from "lucide-react";
 
 const services = [
   {

@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
 import DeviceService from "@/components/DeviceService";
-import { Smartphone, Laptop, Tablet, Watch } from "lucide-react";
 
 export default function ServicesPage() {
   return (

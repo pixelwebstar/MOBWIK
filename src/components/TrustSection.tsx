@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, CheckCircle2, ShieldCheck, Zap, Award } from "lucide-react";
+import { Star, CheckCircle2 } from "lucide-react";
 
 const reviews = [
   {
@@ -74,7 +74,7 @@ const TrustSection = ({ background = "surface-2" }: TrustSectionProps) => {
                         <Star key={i} className="w-3 h-3 fill-primary" />
                       ))}
                     </div>
-                    <p className="text-lg font-medium text-slate-600 mb-8 leading-relaxed italic">"{review.text}"</p>
+                    <p className="text-lg font-medium text-slate-600 mb-8 leading-relaxed italic">&quot;{review.text}&quot;</p>
                   </div>
                   <div className="flex justify-between items-end border-t border-border pt-6">
                     <div>

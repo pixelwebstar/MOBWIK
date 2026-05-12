@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, MapPin, Phone, MessageCircle, UserPlus, Clock, Headphones } from "lucide-react";
+import { Phone } from "lucide-react";
 
 const Footer = () => {
   return (

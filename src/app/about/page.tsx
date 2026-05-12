@@ -4,7 +4,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import { History, Target, Users, Shield, Award, Zap, Activity, Cpu, UserCheck, Eye, ClipboardCheck, Timer, Smartphone, ShieldCheck, Microscope, CheckCircle2 } from "lucide-react";
+import { History, Target, Users, Shield, Activity, Cpu, UserCheck, Eye, ClipboardCheck, Timer, ShieldCheck, Microscope, CheckCircle2 } from "lucide-react";
 
 
 export default function AboutPage() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, Camera, Users, X, MapPin, ExternalLink } from "lucide-react";
+import { Star } from "lucide-react";
 
 interface SocialSectionProps {
   background?: "white" | "surface-2";

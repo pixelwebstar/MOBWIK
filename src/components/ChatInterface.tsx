@@ -21,8 +21,10 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
         parts: [{ type: "text", text: "Welcome to Mobwik. How can I help with your device?" }],
       }
     ],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onToolCall: ({ toolCall }: any) => {
-      const args = toolCall.args;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const args = toolCall.args as any;
       if (toolCall.toolName === "scrollTo") {
         const element = document.getElementById(args.sectionId);
         if (element) {
@@ -33,6 +35,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
         window.location.href = "/contact?scroll=form";
       }
     },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any);
 
   useEffect(() => {
@@ -90,7 +93,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
         style={{ scrollbarWidth: "none" }}
       >
         {messages.map((m: UIMessage) => {
-          const textPart = m.parts.find(p => p.type === 'text') as any;
+          const textPart = m.parts?.find((p: { type: string }) => p.type === 'text') as { text?: string } | undefined;
           const content = textPart?.text || "";
           if (!content && m.role === 'assistant') return null;
 

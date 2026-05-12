@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import TrustSection from "@/components/TrustSection";
 import PageHero from "@/components/PageHero";
 import QualityReviews from "@/components/QualityReviews";
-import { Star, Quote } from "lucide-react";
 
 export default function ReviewsPage() {
   return (
