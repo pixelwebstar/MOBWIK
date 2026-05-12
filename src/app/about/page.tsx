@@ -128,11 +128,11 @@ export default function AboutPage() {
                     <div className={`flip-card-back p-12 transition-colors flex flex-col items-start text-left justify-center
                       ${index % 2 === 0 ? "bg-surface-2" : "bg-white"}`}>
                       <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-8 self-center">TECHNICAL INSIGHT</h4>
-                      <ul className="space-y-6 w-full">
+                      <ul className="space-y-4 w-full">
                         {item.back.map((point, i) => (
-                          <li key={i} className="flex items-center gap-4 group/point">
-                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0 transition-transform group-hover/point:scale-110" />
-                            <span className="text-xs font-black text-secondary uppercase tracking-tight leading-none">
+                          <li key={i} className="flex items-start gap-3 group/point">
+                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5 transition-transform group-hover/point:scale-110" />
+                            <span className="text-sm font-medium text-slate-500 leading-relaxed">
                               {point}
                             </span>
                           </li>
@@ -181,11 +181,11 @@ export default function AboutPage() {
                     <div className={`flip-card-back p-12 transition-colors flex flex-col items-start text-left justify-center
                       ${index % 2 === 0 ? "bg-surface-2" : "bg-white"}`}>
                       <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-8 self-center">TECHNICAL DATA</h4>
-                      <ul className="space-y-6 w-full">
+                      <ul className="space-y-4 w-full">
                         {item.back.map((point, i) => (
-                          <li key={i} className="flex items-center gap-4 group/point">
-                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0 transition-transform group-hover/point:scale-110" />
-                            <span className="text-xs font-black text-secondary uppercase tracking-tight leading-none">
+                          <li key={i} className="flex items-start gap-3 group/point">
+                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5 transition-transform group-hover/point:scale-110" />
+                            <span className="text-sm font-medium text-slate-500 leading-relaxed">
                               {point}
                             </span>
                           </li>
