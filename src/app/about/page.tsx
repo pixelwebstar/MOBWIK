@@ -13,17 +13,17 @@ export default function AboutPage() {
       <main className="flex-grow">
         <PageHero
           title="ABOUT"
-          highlight="MOB WIK."
+          highlight="MOBWIK."
           subtitle="A leading provider of high-precision repair services. Founded on technical excellence and customer transparency."
         />
         {/* Section 1: Overview */}
         <section className="py-24 bg-white border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+            <div className="flex flex-col items-center text-center mb-16 gap-6">
               <div className="space-y-4">
                 <p className="text-4xl lg:text-6xl font-black text-secondary leading-none">COMPANY <br />OVERVIEW</p>
               </div>
-              <p className="text-slate-500 max-w-md text-lg font-medium leading-relaxed">
+              <p className="text-slate-500 max-w-2xl text-lg font-medium leading-relaxed">
                 Founded on technical excellence and customer transparency. We deliver professional-grade hardware solutions with extreme precision.
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function AboutPage() {
                 {
                   icon: <Shield className="w-10 h-10" />,
                   title: "OUR VALUES",
-                  desc: "Integrity, precision, and transparency guide every interaction and technical procedure within our laboratory."
+                  desc: "Integrity, precision, and transparency guide every interaction and technical procedure within our workshop."
                 },
                 {
                   icon: <Award className="w-10 h-10" />,
@@ -81,11 +81,11 @@ export default function AboutPage() {
         {/* Section 2: Why Choose Us */}
         <section className="py-24 bg-surface-2 border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+            <div className="flex flex-col items-center text-center mb-16 gap-6">
               <div className="space-y-4">
                 <p className="text-4xl lg:text-6xl font-black text-secondary leading-none">SERVICE <br />STANDARDS</p>
               </div>
-              <p className="text-slate-500 max-w-md text-lg font-medium leading-relaxed">
+              <p className="text-slate-500 max-w-2xl text-lg font-medium leading-relaxed">
                 We maintain strict quality control and standardized diagnostic procedures for every repair.
               </p>
             </div>

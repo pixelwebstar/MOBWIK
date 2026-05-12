@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import DeviceService from "@/components/DeviceService";
 import Services from "@/components/Services";
+import QualityReviews from "@/components/QualityReviews";
 import TrustSection from "@/components/TrustSection";
 import SocialSection from "@/components/SocialSection";
 import Footer from "@/components/Footer";
@@ -11,9 +13,11 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <DeviceService background="white" />
         <Services />
-        <TrustSection />
-        <SocialSection />
+        <QualityReviews background="white" />
+        <TrustSection background="surface-2" />
+        <SocialSection background="white" />
       </main>
       <Footer />
     </div>

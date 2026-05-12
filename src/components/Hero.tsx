@@ -3,7 +3,7 @@ import { Smartphone } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-surface-2 border-b border-border overflow-hidden">
+    <section className="relative h-[100dvh] pt-[110px] lg:pt-[70px] flex items-center justify-center bg-surface-2 border-b border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center">
 
         <div className="space-y-10 max-w-5xl mx-auto">
@@ -35,11 +35,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative strictly structured elements - matching PageHero */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-10 right-10 w-40 h-40 border-t-2 border-r-2 border-primary/20" />
-        <div className="absolute bottom-10 left-10 w-40 h-40 border-b-2 border-l-2 border-primary/20" />
-      </div>
+
 
     </section>
   );

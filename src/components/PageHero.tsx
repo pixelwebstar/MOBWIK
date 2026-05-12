@@ -22,11 +22,7 @@ const PageHero = ({ title, subtitle, highlight }: PageHeroProps) => {
         </div>
       </div>
 
-      {/* Decorative strictly structured elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-10 right-10 w-40 h-40 border-t-2 border-r-2 border-primary/20" />
-        <div className="absolute bottom-10 left-10 w-40 h-40 border-b-2 border-l-2 border-primary/20" />
-      </div>
+
     </section>
   );
 };

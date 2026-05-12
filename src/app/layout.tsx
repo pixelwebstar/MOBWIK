@@ -8,17 +8,18 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Premium Mobile & Tablet Repair | Mob Wik",
+  title: "Premium Mobile & Tablet Repair | Mobwik",
   description: "Expert repair services for all mobile phones and tablets. Screen replacement, battery repair, and water damage recovery with premium quality and warranty.",
   keywords: ["mobile repair", "phone repair", "tablet repair", "screen replacement", "battery replacement", "iPhone repair", "Samsung repair"],
   openGraph: {
-    title: "Premium Mobile & Tablet Repair | Mob Wik",
+    title: "Premium Mobile & Tablet Repair | Mobwik",
     description: "Fast, professional repairs for all your devices. Same-day service available.",
     type: "website",
   }
 };
 
 import KeyboardNavigation from "@/components/KeyboardNavigation";
+import FloatingContact from "@/components/FloatingContact";
 
 export default function RootLayout({
   children,
@@ -28,12 +29,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} h-full antialiased`}
+      className={`${outfit.variable} h-full antialiased scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-full flex flex-col font-sans select-none" suppressHydrationWarning>
         <KeyboardNavigation />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );

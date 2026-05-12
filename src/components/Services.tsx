@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import { Smartphone, Battery, Droplets, Zap, Camera, Shield, Usb } from "lucide-react";
 
 const services = [
@@ -33,20 +36,27 @@ const services = [
   },
 ];
 
-
-
-
-
 const Services = () => {
+  const [flippedIndex, setFlippedIndex] = React.useState<number | null>(null);
+
+  const seoServices: { [key: string]: string[] } = {
+    "Screen Repair": ["iPhone OLED Replacement", "Android Glass Fix", "Precision Calibration"],
+    "Battery Service": ["OEM Battery Install", "Capacity Restoration", "Power Management Fix"],
+    "Water Damage": ["Ultrasonic Board Clean", "Corrosion Extraction", "Hardware Decontamination"],
+    "Charging Port": ["Type-C Micro-Soldering", "Lightning Port Fix", "Power Input Repair"],
+    "Camera Repair": ["Lens Optics Fix", "Sensor Alignment", "Focus Motor Repair"],
+    "Data Recovery": ["Dead Board Data Extraction", "SSD Partition Recovery", "Forensic Data Salvage"],
+  };
+
   return (
     <section id="services" className="py-24 bg-surface-2 border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col items-center text-center mb-16 gap-6">
           <div className="space-y-4">
-            <p className="text-4xl lg:text-6xl font-black text-secondary leading-none">REPAIR <br />SOLUTIONS</p>
+            <p className="text-4xl lg:text-6xl font-black text-secondary leading-none uppercase">REPAIR <br />SOLUTIONS</p>
           </div>
-          <p className="text-slate-500 max-w-md text-lg font-medium leading-relaxed">
+          <p className="text-slate-500 max-w-2xl text-lg font-medium leading-relaxed">
             Standardized repair workflows and premium components ensure the highest level of reliability for every device we handle.
           </p>
         </div>
@@ -55,32 +65,54 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`p-12 transition-colors group relative border-border flex flex-col items-center text-center
-                ${index % 2 === 0 ? "bg-white" : "bg-surface-2"} 
-                hover:bg-primary/5 transition-all duration-300`}
+              onClick={() => setFlippedIndex(flippedIndex === index ? null : index)}
+              className={`flip-card ${flippedIndex === index ? "flipped" : ""}`}
             >
-              <div className="text-primary mb-8 transition-transform group-hover:scale-110">
-                {service.icon}
-              </div>
+              <div className="flip-card-inner">
+                {/* Front */}
+                <div className={`flip-card-front p-12 transition-colors group relative border-border flex flex-col items-center text-center
+                  ${index % 2 === 0 ? "bg-white" : "bg-surface-2"}`}>
+                  <div className="text-primary mb-8 transition-transform group-hover:scale-110">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-2xl font-black mb-4 text-secondary uppercase tracking-tight">{service.title}</h3>
+                  <p className="text-slate-500 leading-relaxed font-medium mb-10 min-h-[5rem]">{service.description}</p>
+                  <a 
+                    href="/contact?scroll=form"
+                    className="inline-flex items-center justify-center w-full py-4 border-2 border-primary text-primary font-black uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all mt-auto"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    Book Repair
+                  </a>
+                </div>
 
-              
-              <h3 className="text-2xl font-black mb-4 text-secondary uppercase tracking-tight">{service.title}</h3>
-              <p className="text-slate-500 leading-relaxed font-medium mb-10 min-h-[5rem]">{service.description}</p>
-              
-              <a 
-                href="/contact?scroll=form"
-                className="inline-flex items-center justify-center w-full py-4 border-2 border-primary text-primary font-black uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
-              >
-                Book Repair
-              </a>
+                {/* Back */}
+                <div className={`flip-card-back p-12 transition-colors flex flex-col items-center text-center justify-center
+                  ${index % 2 === 0 ? "bg-surface-2" : "bg-white"}`}>
+                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-6">TECHNICAL SPECS</h4>
+                  <ul className="space-y-4 mb-10">
+                    {seoServices[service.title]?.map((seo, sIndex) => (
+                      <li key={sIndex} className="text-sm font-black text-secondary uppercase tracking-tight">{seo}</li>
+                    ))}
+                  </ul>
+                  <a 
+                    href="/contact?scroll=form"
+                    className="inline-flex items-center justify-center w-full py-4 bg-primary text-white font-black uppercase tracking-widest text-xs hover:bg-primary/90 transition-all shadow-lg"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get Quote
+                  </a>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-
-
       </div>
     </section>
   );
 };
+
 
 export default Services;

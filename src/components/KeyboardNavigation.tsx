@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
-const ROUTES = ["/", "/services", "/about", "/contact", "/reviews"];
+const ROUTES = ["/", "/about", "/services", "/reviews", "/contact"];
 
 export default function KeyboardNavigation() {
   const router = useRouter();
@@ -11,6 +11,8 @@ export default function KeyboardNavigation() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+      
       // Don't navigate if user is typing in an input or textarea
       if (
         document.activeElement?.tagName === "INPUT" ||

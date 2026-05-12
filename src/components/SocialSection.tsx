@@ -1,17 +1,21 @@
 import React from "react";
 import { Star, Camera, Users, X, MapPin, ExternalLink } from "lucide-react";
 
-const SocialSection = () => {
+interface SocialSectionProps {
+  background?: "white" | "surface-2";
+}
+
+const SocialSection = ({ background = "white" }: SocialSectionProps) => {
   return (
-    <section className="py-24 bg-white border-b border-border">
+    <section className={`py-24 ${background === "white" ? "bg-white" : "bg-surface-2"} border-b border-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header (Matched to Services) */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col items-center text-center mb-16 gap-6">
           <div className="space-y-4">
             <h4 className="text-4xl lg:text-6xl font-black text-secondary uppercase leading-none">SOCIAL <br />PRESENCE</h4>
           </div>
-          <p className="text-slate-500 max-w-md text-lg font-medium leading-relaxed">
+          <p className="text-slate-500 max-w-2xl text-lg font-medium leading-relaxed">
             Standardized repair workflows and premium components ensure the highest level of reliability for every device we handle.
           </p>
         </div>
@@ -19,7 +23,7 @@ const SocialSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           
           {/* Left: Google Business Profile */}
-          <div className="bg-surface-2 p-12 border border-border flex flex-col justify-between space-y-8">
+          <div className={`${background === "white" ? "bg-surface-2" : "bg-white"} p-12 border border-border flex flex-col justify-between space-y-8`}>
             <div className="space-y-8">
               <div className="flex items-center space-x-4">
                 <div className="bg-white p-4 border border-border shadow-sm">
@@ -65,7 +69,7 @@ const SocialSection = () => {
               <a 
                 key={i}
                 href="#"
-                className={`flex flex-col items-center justify-center p-12 border border-border bg-white hover:border-primary transition-all group ${social.color}`}
+                className={`flex flex-col items-center justify-center p-12 border border-border transition-all group ${background === "white" ? "bg-surface-2" : "bg-white"} hover:border-primary ${social.color}`}
               >
                 <span className="text-xs font-black tracking-[0.3em] uppercase">{social.name}</span>
               </a>
