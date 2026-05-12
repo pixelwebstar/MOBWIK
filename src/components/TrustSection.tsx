@@ -38,10 +38,10 @@ const TrustSection = ({ background = "surface-2" }: TrustSectionProps) => {
   const [flippedIndex, setFlippedIndex] = React.useState<number | null>(null);
 
   const technicalIndicators = [
-    "Board-Level Technical Protocol",
-    "Micro-Soldering Certification",
-    "Hardware Integrity Assurance",
-    "Advanced Diagnostic Logic"
+    ["Board-Level Protocol", "Circuit Analysis", "Signal Restoration"],
+    ["Micro-Soldering", "IC Replacement", "Trace Repair"],
+    ["Hardware Integrity", "Structural Bonding", "Material Testing"],
+    ["Diagnostic Logic", "Root Cause Analysis", "System Validation"]
   ];
 
   return (
@@ -86,11 +86,16 @@ const TrustSection = ({ background = "surface-2" }: TrustSectionProps) => {
                 </div>
 
                 {/* Back */}
-                <div className="flip-card-back p-10 border border-border bg-surface-2 flex flex-col items-center text-center justify-center">
-                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-6">TECHNICAL STANDARD</h4>
-                  <p className="text-sm font-bold text-secondary uppercase tracking-tight mb-8">
-                    {technicalIndicators[i % technicalIndicators.length]}
-                  </p>
+                <div className="flip-card-back p-10 border border-border bg-surface-2 flex flex-col items-start text-left justify-center">
+                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-8 self-center">TECHNICAL STANDARD</h4>
+                  <ul className="space-y-4 mb-10 w-full">
+                    {technicalIndicators[i % technicalIndicators.length].map((point, sIndex) => (
+                      <li key={sIndex} className="flex items-start gap-3 group/point">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-slate-500 leading-relaxed uppercase tracking-tight">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <a 
                     href="/contact?scroll=form"
                     className="inline-flex items-center justify-center w-full py-4 bg-primary text-white font-black uppercase tracking-widest text-xs hover:bg-primary/90 transition-all shadow-lg"

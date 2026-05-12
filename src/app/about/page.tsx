@@ -105,7 +105,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border overflow-hidden">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border">
               {overviewItems.map((item, index) => (
                 <div
                   key={index}
@@ -158,7 +158,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border overflow-hidden">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border">
               {standardItems.map((item, index) => (
                 <div
                   key={index}

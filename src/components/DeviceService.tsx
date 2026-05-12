@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Smartphone, Laptop, Tablet, Watch, Headphones, Cpu } from "lucide-react";
+import { Smartphone, Laptop, Tablet, Watch, Headphones, Cpu, CheckCircle2 } from "lucide-react";
 
 const devices = [
   { title: "Smartphones", desc: "Screen repair, battery replacement, and diagnostics for all major iPhone and Android models.", icon: <Smartphone className="w-10 h-10" /> },
@@ -40,7 +40,7 @@ const DeviceService = ({ background = "white" }: DeviceServiceProps) => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border overflow-hidden">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border">
           {devices.map((item, index) => (
             <div
               key={index}
@@ -68,12 +68,15 @@ const DeviceService = ({ background = "white" }: DeviceServiceProps) => {
                 </div>
 
                 {/* Back */}
-                <div className={`flip-card-back p-12 transition-colors flex flex-col items-center text-center justify-center
+                <div className={`flip-card-back p-12 transition-colors flex flex-col items-start text-left justify-center
                   ${index % 2 === 0 ? "bg-surface-2" : "bg-white"}`}>
-                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-6">TOP SERVICES</h4>
-                  <ul className="space-y-4 mb-10">
+                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-8 self-center">TOP SERVICES</h4>
+                  <ul className="space-y-4 mb-10 w-full">
                     {seoServices[item.title]?.map((service, sIndex) => (
-                      <li key={sIndex} className="text-sm font-black text-secondary uppercase tracking-tight">{service}</li>
+                      <li key={sIndex} className="flex items-start gap-3 group/point">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-slate-500 leading-relaxed uppercase tracking-tight">{service}</span>
+                      </li>
                     ))}
                   </ul>
                   <a 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star } from "lucide-react";
+import { Star, CheckCircle2 } from "lucide-react";
 
 const reviewSources = [
   {
@@ -56,12 +56,12 @@ const QualityReviews = ({ background = "white" }: QualityReviewsProps) => {
   const [flippedIndex, setFlippedIndex] = React.useState<number | null>(null);
 
   const trustIndicators = [
-    "Certified Hardware Solutions",
-    "Technical Quality Protocol",
-    "Transparent Service Workflow",
-    "OEM Component Standards",
-    "Post-Repair System Testing",
-    "Direct Technical Accountability"
+    ["Certified Hardware", "Technical Protocol", "Quality Assurance"],
+    ["Transparent Workflow", "OEM Components", "System Testing"],
+    ["Accountability", "Expert Diagnostics", "Safety Standards"],
+    ["Precision Care", "Original Parts", "Rigorous Testing"],
+    ["Hardware Integrity", "Standard Methods", "System Health"],
+    ["Professional Grade", "Reliable Service", "Technical Depth"]
   ];
 
   return (
@@ -76,7 +76,7 @@ const QualityReviews = ({ background = "white" }: QualityReviewsProps) => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border overflow-hidden">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border">
           {reviewSources.map((review, i) => (
             <div 
               key={i} 
@@ -105,12 +105,17 @@ const QualityReviews = ({ background = "white" }: QualityReviewsProps) => {
                 </div>
 
                 {/* Back */}
-                <div className={`flip-card-back p-12 transition-colors flex flex-col items-center text-center justify-center
+                <div className={`flip-card-back p-12 transition-colors flex flex-col items-start text-left justify-center
                   ${i % 2 === 0 ? "bg-surface-2" : "bg-white"}`}>
-                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-6">SERVICE TRUST</h4>
-                  <p className="text-sm font-bold text-secondary uppercase tracking-tight mb-8">
-                    {trustIndicators[i % trustIndicators.length]}
-                  </p>
+                  <h4 className="text-[10px] font-black tracking-[0.4em] text-primary uppercase mb-8 self-center">SERVICE TRUST</h4>
+                  <ul className="space-y-4 mb-10 w-full">
+                    {trustIndicators[i % trustIndicators.length].map((point, sIndex) => (
+                      <li key={sIndex} className="flex items-start gap-3 group/point">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-slate-500 leading-relaxed uppercase tracking-tight">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <a 
                     href="/contact?scroll=form"
                     className="inline-flex items-center justify-center w-full py-4 bg-secondary text-white font-black uppercase tracking-widest text-xs hover:bg-secondary/90 transition-all shadow-lg"
