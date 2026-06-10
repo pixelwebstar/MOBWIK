@@ -125,7 +125,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
       >
         {messages.map((m: UIMessage) => {
           const textPart = m.parts?.find((p: { type: string }) => p.type === 'text') as { text?: string } | undefined;
-          const content = textPart?.text || "";
+          const content = textPart?.text || m.content || "";
           if (!content && m.role === 'assistant') return null;
 
           return (

@@ -22,7 +22,7 @@ const FloatingContact = () => {
   // Automatic popup removed as requested
 
   return (
-    <div className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[100] flex flex-col items-center">
+    <div className="fixed bottom-8 right-6 sm:bottom-8 sm:right-8 z-[100] flex flex-col items-center">
       {/* Circle Options */}
       <div className={`flex flex-col space-y-3 mb-4 transition-all duration-300 ${
         activeView === "menu" ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90 pointer-events-none"
