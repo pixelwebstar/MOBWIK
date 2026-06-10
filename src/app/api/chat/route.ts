@@ -101,8 +101,9 @@ export async function POST(req: Request) {
           tools: getTools(),
         });
         success = true;
-      } catch (e: any) {
-        errorLog += `Gemini error: ${e.message || e}\n`;
+      } catch (e: unknown) {
+        const errMsg = e instanceof Error ? e.message : String(e);
+        errorLog += `Gemini error: ${errMsg}\n`;
         console.error("Gemini failed, trying OpenRouter fallback...", e);
       }
     } else {
@@ -124,8 +125,9 @@ export async function POST(req: Request) {
           tools: getTools(),
         });
         success = true;
-      } catch (e: any) {
-        errorLog += `OpenRouter error: ${e.message || e}\n`;
+      } catch (e: unknown) {
+        const errMsg = e instanceof Error ? e.message : String(e);
+        errorLog += `OpenRouter error: ${errMsg}\n`;
         console.error("OpenRouter failed, trying OpenAI fallback...", e);
       }
     }
@@ -140,15 +142,18 @@ export async function POST(req: Request) {
           tools: getTools(),
         });
         success = true;
-      } catch (e: any) {
-        errorLog += `OpenAI error: ${e.message || e}\n`;
+      } catch (e: unknown) {
+        const errMsg = e instanceof Error ? e.message : String(e);
+        errorLog += `OpenAI error: ${errMsg}\n`;
         console.error("OpenAI failed, falling back to local responder...", e);
       }
     }
 
     if (success && result) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return (result as any).toDataStreamResponse();
+      return (result as any).toUIMessageStreamResponse({
+        originalMessages: messages,
+      });
     }
 
     console.warn("All AI models failed or were missing credentials. Triggering local mock fallback. Errors:\n", errorLog);
@@ -168,11 +173,27 @@ export async function POST(req: Request) {
           responseText = "Mobwik is a premium device repair shop. We offer warranty-backed screen replacements, battery repairs, and more. Visit our About page to learn more.";
         }
 
+        const messageId = `msg-${Date.now()}`;
+        const textId = `txt-${Date.now()}`;
+
+        // Send start of message
+        controller.enqueue(encoder.encode(`data: {"type":"start","messageId":"${messageId}"}\n\n`));
+        // Send start of text block
+        controller.enqueue(encoder.encode(`data: {"type":"text-start","id":"${textId}"}\n\n`));
+
         const chunks = responseText.match(/.{1,8}/g) || [responseText];
         for (const chunk of chunks) {
-          controller.enqueue(encoder.encode(`0:${JSON.stringify(chunk)}\n`));
+          controller.enqueue(encoder.encode(`data: {"type":"text-delta","id":"${textId}","delta":${JSON.stringify(chunk)}}\n\n`));
           await new Promise(r => setTimeout(r, 45));
         }
+
+        // Send end of text block
+        controller.enqueue(encoder.encode(`data: {"type":"text-end","id":"${textId}"}\n\n`));
+        // Send finish message
+        controller.enqueue(encoder.encode(`data: {"type":"finish"}\n\n`));
+        // Send [DONE] marker
+        controller.enqueue(encoder.encode(`data: [DONE]\n\n`));
+
         controller.close();
       }
     });
@@ -180,7 +201,7 @@ export async function POST(req: Request) {
     return new Response(customStream, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
-        "x-vercel-ai-data-stream": "v1"
+        "x-vercel-ai-ui-message-stream": "v1"
       }
     });
 

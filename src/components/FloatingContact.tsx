@@ -22,7 +22,7 @@ const FloatingContact = () => {
   // Automatic popup removed as requested
 
   return (
-    <div className="fixed bottom-8 right-6 sm:bottom-8 sm:right-8 z-[100] flex flex-col items-center">
+    <div className="fixed bottom-8 right-6 sm:bottom-8 sm:right-8 z-[100] flex flex-col items-center w-14 h-auto">
       {/* Circle Options */}
       <div className={`flex flex-col space-y-3 mb-4 transition-all duration-300 ${
         activeView === "menu" ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90 pointer-events-none"
@@ -30,7 +30,7 @@ const FloatingContact = () => {
         {/* AI Chat Circle - Gemini Logo */}
         <button
           onClick={() => setActiveView("chat")}
-          className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
+          className="w-12 h-12 shrink-0 bg-primary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
           title="AI CHAT"
         >
           <GeminiLogo />
@@ -41,7 +41,7 @@ const FloatingContact = () => {
           href="https://wa.me/17803607447"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
+          className="w-12 h-12 shrink-0 bg-accent text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
           title="WHATSAPP"
         >
           <WhatsAppLogo />
@@ -50,7 +50,7 @@ const FloatingContact = () => {
         {/* Call Circle */}
         <a
           href="tel:+17803607447"
-          className="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
+          className="w-12 h-12 shrink-0 bg-secondary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
           title="CALL"
         >
           <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
@@ -67,7 +67,7 @@ const FloatingContact = () => {
       {/* Main Toggle Button */}
       <button
         onClick={() => setActiveView(activeView === "none" ? "menu" : "none")}
-        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
+        className={`w-14 h-14 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 ${
           activeView !== "none" ? "bg-secondary rotate-90" : "bg-primary hover:scale-110 active:scale-95 shadow-xl shadow-primary/20"
         }`}
       >

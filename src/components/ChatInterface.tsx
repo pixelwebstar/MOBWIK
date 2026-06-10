@@ -17,13 +17,15 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   const [callbackName, setCallbackName] = useState("");
   const [callbackPhone, setCallbackPhone] = useState("");
   const [isSubmittingCallback, setIsSubmittingCallback] = useState(false);
+  const [isCustomTyping, setIsCustomTyping] = useState(false);
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, setMessages } = useChat({
     api: "/api/chat",
     initialMessages: [
       {
         id: "welcome-message",
         role: "assistant",
+        content: "Welcome to Mobwik. How can I help with your device?",
         parts: [{ type: "text", text: "Welcome to Mobwik. How can I help with your device?" }],
       }
     ],
@@ -54,6 +56,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   }, [messages]);
 
   const isLoading = status === "streaming" || status === "submitted";
+  const showTypingIndicator = status === "submitted" || isCustomTyping;
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,13 +80,54 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: callbackName, phone: callbackPhone }),
       });
+      const submittedName = callbackName;
+      const submittedPhone = callbackPhone;
+
       setIsCallbackOpen(false);
       setCallbackName("");
       setCallbackPhone("");
-      // Automatically send text to LLM so it acknowledges the callback in conversation
-      await sendMessage({
-        text: `Please call me back. My name is ${callbackName} and my phone number is ${callbackPhone}. Please register this callback request.`
-      });
+
+      // 1. Add user message to history
+      setMessages((prevMessages: UIMessage[]) => [
+        ...prevMessages,
+        {
+          id: `user-callback-${Date.now()}`,
+          role: "user",
+          parts: [{ type: "text", text: `Requested Callback: ${submittedName} (${submittedPhone})` }]
+        }
+      ]);
+
+      // 2. Show typing indicator for a brief moment to simulate processing
+      setIsCustomTyping(true);
+      await new Promise(r => setTimeout(r, 1200));
+      setIsCustomTyping(false);
+
+      // 3. Append empty assistant message
+      const assistantMsgId = `assistant-callback-${Date.now()}`;
+      setMessages((prevMessages: UIMessage[]) => [
+        ...prevMessages,
+        {
+          id: assistantMsgId,
+          role: "assistant",
+          parts: [{ type: "text", text: "" }]
+        }
+      ]);
+
+      // 4. Stream typing animation word-by-word
+      const responseText = `Thank you, ${submittedName}! We have received your callback request and will contact you at ${submittedPhone} shortly.`;
+      const words = responseText.split(" ");
+      let currentText = "";
+      for (let i = 0; i < words.length; i++) {
+        currentText += (i === 0 ? "" : " ") + words[i];
+        setMessages((prevMessages: UIMessage[]) => 
+          prevMessages.map((msg) => 
+            msg.id === assistantMsgId
+              ? { ...msg, parts: [{ type: "text", text: currentText }] }
+              : msg
+          )
+        );
+        await new Promise(r => setTimeout(r, 80)); // 80ms delay between words
+      }
     } catch (error) {
       console.error("Failed to submit callback:", error);
     } finally {
@@ -125,7 +169,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
       >
         {messages.map((m: UIMessage) => {
           const textPart = m.parts?.find((p: { type: string }) => p.type === 'text') as { text?: string } | undefined;
-          const content = textPart?.text || m.content || "";
+          const content = textPart?.text || (m as { content?: string }).content || "";
           if (!content && m.role === 'assistant') return null;
 
           return (
@@ -148,7 +192,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
           );
         })}
         
-        {isLoading && (
+        {showTypingIndicator && (
           <div className="flex justify-start">
             <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center mr-2 mt-1 shrink-0">
               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-primary animate-pulse" xmlns="http://www.w3.org/2000/svg">
