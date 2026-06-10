@@ -92,7 +92,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   };
 
   return (
-    <div className="relative w-[380px] h-[540px] bg-white flex flex-col rounded-2xl overflow-hidden border border-black/5 shadow-xl">
+    <div className="relative w-[calc(100vw-48px)] sm:w-[380px] h-[480px] sm:h-[540px] max-h-[calc(100vh-120px)] bg-white flex flex-col rounded-2xl overflow-hidden border border-black/5 shadow-xl">
 
       {/* ── Header ── */}
       <div className="relative px-5 py-4 bg-secondary text-white flex justify-between items-center shrink-0">
@@ -121,8 +121,7 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
       {/* ── Messages ── */}
       <div 
         ref={scrollRef}
-        className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-4 bg-gradient-to-b from-surface-2/40 to-white"
-        style={{ scrollbarWidth: "none" }}
+        className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-4 bg-gradient-to-b from-surface-2/40 to-white no-scrollbar"
       >
         {messages.map((m: UIMessage) => {
           const textPart = m.parts?.find((p: { type: string }) => p.type === 'text') as { text?: string } | undefined;

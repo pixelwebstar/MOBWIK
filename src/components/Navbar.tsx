@@ -88,7 +88,7 @@ const Navbar = () => {
       {/* Mobile Secondary Header (Links) */}
       <div className="lg:hidden w-full bg-white relative z-10">
         <div className="w-full px-6 sm:px-12">
-          <div className="flex w-full items-center divide-x divide-black/10 overflow-x-auto py-2 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: "none" }}>
+          <div className="flex w-full items-center divide-x divide-black/10 overflow-x-auto py-2 no-scrollbar">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
