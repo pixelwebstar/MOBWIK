@@ -38,10 +38,10 @@ const FloatingContact = () => {
         
         {/* WhatsApp Circle */}
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/17803607447"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
+          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
           title="WHATSAPP"
         >
           <WhatsAppLogo />
@@ -49,7 +49,7 @@ const FloatingContact = () => {
 
         {/* Call Circle */}
         <a
-          href="tel:+1234567890"
+          href="tel:+17803607447"
           className="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform group"
           title="CALL"
         >

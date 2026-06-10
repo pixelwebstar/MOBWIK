@@ -51,9 +51,9 @@ function ContactContent() {
               <div className="lg:col-span-5 bg-white border border-border rounded-lg shadow-md overflow-hidden flex flex-col h-full">
                 <div className="grid grid-cols-2 gap-[1px] bg-border h-full min-h-[600px]">
                   {[
-                    { label: "Phone", value: "+1.234.567.890", link: "tel:+1234567890" },
-                    { label: "WhatsApp", value: "+1.234.567.890", link: "https://wa.me/1234567890" },
-                    { label: "Email", value: "REPAIR@MOBILEWIK.COM", link: "mailto:repair@mobilewik.com" },
+                    { label: "Phone", value: "+1 (780) 360-7447", link: "tel:+17803607447" },
+                    { label: "WhatsApp", value: "+1 (780) 360-7447", link: "https://wa.me/17803607447" },
+                    { label: "Email", value: "ADMIN@ASHEEJAJAYAN.COM", link: "mailto:admin@asheejajayan.com" },
                     { label: "G-Business", value: "MOBWIK OFFICIAL", link: "#" },
                     { label: "Address", value: "11910 76TH STREET", link: "https://maps.google.com/?q=11910+76th+Street" },
                     { label: "Schedule", value: "09:00 - 18:00", link: "#" },

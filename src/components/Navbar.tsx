@@ -41,7 +41,7 @@ const Navbar = () => {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28 relative z-10">
         {/* First Header Row */}
         <div className={`flex justify-between items-center transition-all duration-200 ${isScrolled ? "py-3" : "py-5"}`}>
           {/* Logo */}
@@ -64,7 +64,7 @@ const Navbar = () => {
               </Link>
             ))}
             <a
-              href="tel:+1234567890"
+              href="tel:+17803607447"
               className="bg-primary text-white px-6 py-3 rounded-md font-bold hover:bg-primary/90 transition-all text-sm uppercase tracking-wider shadow-sm flex items-center space-x-2"
             >
               <Phone className="w-4 h-4" />
@@ -75,7 +75,7 @@ const Navbar = () => {
           {/* Mobile Call Now Button */}
           <div className="lg:hidden flex items-center">
             <a
-              href="tel:+1234567890"
+              href="tel:+17803607447"
               className="bg-primary text-white px-4 py-2 rounded-md font-bold hover:bg-primary/90 transition-all text-xs uppercase tracking-wider shadow-sm flex items-center space-x-2 leading-none"
             >
               <Phone className="w-3.5 h-3.5" />
@@ -87,7 +87,7 @@ const Navbar = () => {
 
       {/* Mobile Secondary Header (Links) */}
       <div className="lg:hidden w-full bg-white relative z-10">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <div className="w-full px-6 sm:px-12">
           <div className="flex w-full items-center divide-x divide-black/10 overflow-x-auto py-2 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: "none" }}>
             {navLinks.map((link) => (
               <Link
