@@ -12,6 +12,12 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   const [inputValue, setInputValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   
+  // Callback states
+  const [isCallbackOpen, setIsCallbackOpen] = useState(false);
+  const [callbackName, setCallbackName] = useState("");
+  const [callbackPhone, setCallbackPhone] = useState("");
+  const [isSubmittingCallback, setIsSubmittingCallback] = useState(false);
+
   const { messages, sendMessage, status } = useChat({
     api: "/api/chat",
     initialMessages: [
@@ -34,6 +40,9 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
       if (toolCall.toolName === "bookRepair") {
         window.location.href = "/contact?scroll=form";
       }
+      if (toolCall.toolName === "navigateTo") {
+        window.location.href = args.path;
+      }
     },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any);
@@ -54,13 +63,36 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
     await sendMessage({ text });
   };
 
-  const handleRequestCallback = async () => {
-    if (isLoading) return;
-    await sendMessage({ text: "I want to request a call back" });
+  const handleRequestCallback = () => {
+    setIsCallbackOpen(true);
+  };
+
+  const handleCallbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!callbackName || !callbackPhone || isSubmittingCallback) return;
+    setIsSubmittingCallback(true);
+    try {
+      await fetch("/api/callback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: callbackName, phone: callbackPhone }),
+      });
+      setIsCallbackOpen(false);
+      setCallbackName("");
+      setCallbackPhone("");
+      // Automatically send text to LLM so it acknowledges the callback in conversation
+      await sendMessage({
+        text: `Please call me back. My name is ${callbackName} and my phone number is ${callbackPhone}. Please register this callback request.`
+      });
+    } catch (error) {
+      console.error("Failed to submit callback:", error);
+    } finally {
+      setIsSubmittingCallback(false);
+    }
   };
 
   return (
-    <div className="w-[380px] h-[540px] bg-white flex flex-col rounded-2xl overflow-hidden border border-black/5">
+    <div className="relative w-[380px] h-[540px] bg-white flex flex-col rounded-2xl overflow-hidden border border-black/5 shadow-xl">
 
       {/* ── Header ── */}
       <div className="relative px-5 py-4 bg-secondary text-white flex justify-between items-center shrink-0">
@@ -133,13 +165,68 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
         )}
       </div>
 
+      {/* ── Callback Form Overlay ── */}
+      {isCallbackOpen && (
+        <div className="absolute inset-x-0 bottom-0 top-[68px] bg-white z-40 flex flex-col p-6 transition-all duration-300">
+          <div className="flex-1 flex flex-col justify-center space-y-6">
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-black text-secondary uppercase tracking-tight">Request a Call Back</h3>
+              <p className="text-xs text-slate-500 max-w-xs mx-auto">
+                Enter your details below and our team will contact you shortly.
+              </p>
+            </div>
+
+            <form onSubmit={handleCallbackSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-wider text-secondary">Your Name</label>
+                <input
+                  required
+                  value={callbackName}
+                  onChange={(e) => setCallbackName(e.target.value)}
+                  placeholder="Amrith Jayan"
+                  className="w-full text-xs p-3.5 bg-surface-2 border border-black/5 rounded-xl focus:outline-none focus:border-primary transition-all font-medium"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-wider text-secondary">Phone Number</label>
+                <input
+                  required
+                  type="tel"
+                  value={callbackPhone}
+                  onChange={(e) => setCallbackPhone(e.target.value)}
+                  placeholder="+1 (780) 360-7447"
+                  className="w-full text-xs p-3.5 bg-surface-2 border border-black/5 rounded-xl focus:outline-none focus:border-primary transition-all font-medium"
+                />
+              </div>
+
+              <div className="pt-4 flex space-x-3">
+                <button
+                  type="button"
+                  onClick={() => setIsCallbackOpen(false)}
+                  className="flex-1 py-3.5 bg-surface-2 hover:bg-black/5 text-secondary text-xs font-bold uppercase tracking-wider rounded-xl transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmittingCallback}
+                  className="flex-1 py-3.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/20 flex items-center justify-center space-x-2 disabled:opacity-50"
+                >
+                  {isSubmittingCallback ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* ── Footer ── */}
       <div className="bg-white border-t border-black/5 shrink-0">
         {/* Quick Action — Request Callback */}
         <div className="px-4 pt-3">
           <button
             onClick={handleRequestCallback}
-            disabled={isLoading}
+            disabled={isLoading || isCallbackOpen}
             className="w-full flex items-center justify-center space-x-2 text-[11px] font-bold text-secondary bg-surface-2/60 hover:bg-primary/5 hover:text-primary border border-black/5 hover:border-primary/15 px-4 py-2.5 rounded-xl transition-all disabled:opacity-40"
           >
             <PhoneCall className="w-3.5 h-3.5" />
@@ -154,11 +241,12 @@ const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Ask about repairs..."
-              className="flex-grow text-[13px] bg-surface-2/60 pl-4 pr-4 py-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/15 focus:bg-white transition-all border border-transparent focus:border-primary/10"
+              disabled={isCallbackOpen}
+              className="flex-grow text-[13px] bg-surface-2/60 pl-4 pr-4 py-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/15 focus:bg-white transition-all border border-transparent focus:border-primary/10 disabled:opacity-50"
             />
             <button 
               type="submit" 
-              disabled={!inputValue || isLoading}
+              disabled={!inputValue || isLoading || isCallbackOpen}
               className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 active:scale-95 transition-all disabled:opacity-20 shadow-lg shadow-primary/20"
             >
               <ArrowUp className="w-4 h-4" strokeWidth={2.5} />

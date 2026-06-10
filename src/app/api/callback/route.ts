@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const businessEmail = process.env.BUSINESS_EMAIL || "repair@mobilewik.com";
+  const businessEmail = process.env.BUSINESS_EMAIL || "admin@asheejajayan.com";
 
   // If Resend API key is available, send real email
   if (process.env.RESEND_API_KEY) {
